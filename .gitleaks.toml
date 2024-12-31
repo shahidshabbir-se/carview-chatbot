@@ -1,0 +1,9 @@
+[[rules]]
+description = "DB Credentials"
+regex = '''(?i)(db[-_]?user|db[-_]?password)[:=]?\s*(\w+)'''
+secret = true
+
+[[rules]]
+description = "JWT Secret"
+regex = '''(?i)(jwt[-_]?secret)[:=]?\s*(\w+)'''
+secret = true

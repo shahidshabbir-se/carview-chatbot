@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  carview-container:
+    image: postgres:latest
+    container_name: carview-container
+    environment:
+      POSTGRES_USER: shahid
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: carview-db
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - carview-data:/var/lib/postgresql/data
+
+volumes:
+  carview-data:
+    driver: local
