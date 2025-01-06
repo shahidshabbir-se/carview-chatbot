@@ -14,5 +14,6 @@
       "@context/*": ["./src/context//*"],
       "@utils/*": ["./utils/*"]
     }
-  }
+  },
+  "references": [{ "path": "./tsconfig.app.json" }]
 }

@@ -2,10 +2,10 @@ import dotenv from 'dotenv'
 import setupModuleAliases from './moduleAlias'
 dotenv.config()
 setupModuleAliases()
-import { connectDB } from '@configs/prisma.config'
+import { connectDB } from './configs/prisma.config'
 import express from 'express'
 import cors from 'cors'
-import router from '@routes/export.routes'
+import router from './routes/export.routes'
 
 const corsOptions = {
   origin: 'http://localhost:3000',

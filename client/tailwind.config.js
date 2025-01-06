@@ -36,6 +36,13 @@ export default {
         'extra-bold': 800,
         black: 900
       },
+      boxShadow: {
+        xs: '0px 4px 8px 0px #00000014',
+        sm: '0px 6px 12px 0px #0000001C',
+        md: '0px 9px 18px 0px #00000026',
+        lg: '0px 13px 37px 0px #00000036',
+        xl: '0px 20px 56px 0px #0000004A'
+      },
       colors: {
         gray: {
           50: '#F8FAFC',

@@ -6,3 +6,10 @@
 * {
   font-family: 'Inter', serif;
 }
+
+body {
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+  background: #f1f5f9;
+}
