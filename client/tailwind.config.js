@@ -129,5 +129,16 @@ export default {
         }
       }
     }
-  }
+  },
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.center-flex': {
+          display: 'flex',
+          'align-items': 'center',
+          'justify-content': 'center'
+        }
+      })
+    }
+  ]
 }

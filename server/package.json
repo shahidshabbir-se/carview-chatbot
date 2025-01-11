@@ -8,8 +8,6 @@
     "dev": "concurrently \"npx tsc --watch\" \"nodemon ./src/app.ts\"",
     "build": "tsc",
     "lint": "eslint 'src/**/*.ts'",
-    "prisma:migrate": "dotenv -e ../.env -- pnpm prisma migrate dev --name init",
-    "prisma:studio": "dotenv -e ../.env -- pnpm prisma studio",
     "format": "prettier --write \"src/**/*.ts\""
   },
   "keywords": [],
@@ -42,7 +40,7 @@
     "globals": "^15.14.0",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
-    "prisma": "^6.1.0",
+    "prisma": "6.0.1",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.2"
   }
