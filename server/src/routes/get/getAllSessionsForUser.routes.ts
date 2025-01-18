@@ -13,7 +13,6 @@ const getAllSessionsForUser = async (
   }
 
   try {
-    // Fetch sessions and their messages, including both user and chatbot messages (with AI response)
     const sessions = await prisma.chatSession.findMany({
       where: {
         userId: userId
@@ -27,15 +26,15 @@ const getAllSessionsForUser = async (
       }
     })
 
-    // Filter sessions where the first message has a corresponding chatbot (child) message
     const filteredSessions = sessions.filter((session) => {
       const firstMessage = session.messages[0]
-      const chatbotMessages = session.messages.filter(
+      if (!firstMessage) return false
+
+      const hasChatbotResponse = session.messages.some(
         (message) => message.parentId === firstMessage.id
       )
 
-      // Ensure the first message has a child (chatbot's AI-generated message)
-      return chatbotMessages.length > 0
+      return hasChatbotResponse
     })
 
     if (filteredSessions.length === 0) {
@@ -45,7 +44,14 @@ const getAllSessionsForUser = async (
       return
     }
 
-    res.status(200).json(filteredSessions)
+    const response = filteredSessions
+      .map((session) => ({
+        id: session.id,
+        name: session.name ?? '' // Use a fallback for null names
+      }))
+      .sort((a, b) => b.name.localeCompare(a.name || ''))
+
+    res.status(200).json(response)
   } catch {
     res.status(500).json({ error: 'Internal Server Error' })
   }

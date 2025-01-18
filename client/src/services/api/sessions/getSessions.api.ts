@@ -28,7 +28,7 @@ export const getSessions = async (
     )
     console.log(response.data)
     return response.data // Return an array of sessions
-  } catch (error: any) {
+  } catch (error) {
     console.error(
       'Error fetching sessions:',
       error.response ? error.response.data : error.message

@@ -10,6 +10,15 @@ const addUserMessage = async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
+    const existingMessages = await prisma.message.findFirst({
+      where: { sessionId: parseInt(sessionId, 10) }
+    })
+    if (!existingMessages) {
+      await prisma.chatSession.update({
+        where: { id: parseInt(sessionId, 10) },
+        data: { name: content }
+      })
+    }
     const newMessage = await prisma.message.create({
       data: {
         sessionId: parseInt(sessionId, 10),

@@ -19,7 +19,7 @@ export const createSession = async (
 
     console.log('Session created successfully:', response.data)
     return response.data
-  } catch (error: any) {
+  } catch (error) {
     console.error(
       'Error creating session:',
       error.response ? error.response.data : error.message

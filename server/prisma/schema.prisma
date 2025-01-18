@@ -17,7 +17,7 @@ datasource db {
 model Message {
   id        Int         @id @default(autoincrement())
   sessionId Int
-  session   ChatSession @relation(fields: [sessionId], references: [id])
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   sender    String
   content   String
   parentId  Int?
@@ -29,6 +29,7 @@ model Message {
 model ChatSession {
   id        Int       @id @default(autoincrement())
   userId    Int
+  name      String?
   user      User      @relation(fields: [userId], references: [id])
   messages  Message[]
   createdAt DateTime  @default(now())
