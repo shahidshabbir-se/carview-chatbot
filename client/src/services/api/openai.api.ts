@@ -1,14 +1,18 @@
-import OpenAI from 'openai'
+import axios from 'axios'
 
-const client = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true // Only use this if you understand the risks
-})
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080'
 
 export async function openaiChat(prompt: string) {
-  const chatCompletion = await client.chat.completions.create({
-    messages: [{ role: 'user', content: prompt }],
-    model: 'gpt-4o'
-  })
-  return chatCompletion
+  try {
+    const response = await axios.post(`${API_URL}/api/chat`, { prompt })
+    return response.data
+  } catch (error: unknown) {
+    console.error('Error fetching chat response:', error)
+
+    if (axios.isAxiosError(error)) {
+      return { error: error.response?.data?.error || 'API request failed' }
+    }
+
+    return { error: 'An unknown error occurred' }
+  }
 }

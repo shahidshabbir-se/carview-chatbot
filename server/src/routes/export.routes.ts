@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import generateChatResponse from './openaiChat'
 import addChatbotResponse from './add/addChatbotResponse.routes'
 import addUserMessage from './add/addUserMessage.routes'
 import createSession from './create/createSession.routes'
@@ -9,10 +10,11 @@ import deleteAllChatSessions from './del/delAllChatSessions.routes'
 import editSessionName from './patch/editSessionName.routes'
 
 const router = Router()
+router.post('/chat', generateChatResponse)
 router.post('/add/chatbot-response', addChatbotResponse)
 router.post('/add/user-message', addUserMessage)
 router.post('/create/session', createSession)
-router.delete('/del/session/:sessionId', deleteSession) // Add the delete route
+router.delete('/del/session/:sessionId', deleteSession)
 router.get('/get/:userId/all-sessions', getAllSessionsForUser)
 router.get('/get/messages/:sessionId', getMessagesInSession)
 router.delete('/del/all-sessions/:userId', deleteAllChatSessions)

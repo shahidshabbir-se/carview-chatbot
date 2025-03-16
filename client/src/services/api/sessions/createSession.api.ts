@@ -19,10 +19,13 @@ export const createSession = async (
 
     console.log('Session created successfully:', response.data)
     return response.data
-  } catch (error) {
-    console.error(
-      'Error creating session:',
-      error.response ? error.response.data : error.message
-    )
+  } catch (error: unknown) {
+    console.error('Error creating session:', error)
+
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error response:', error.response?.data)
+    } else {
+      console.error('Unexpected error:', error)
+    }
   }
 }
